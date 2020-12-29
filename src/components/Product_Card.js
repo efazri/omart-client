@@ -1,34 +1,37 @@
 import { Button, IconButton } from '@material-ui/core'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import { useHistory } from 'react-router-dom'
+import { setDeleteDialog, setSelectedProduct, setDialog } from '../store/actions/actions'
 
 
 export default function Product_Card (props) {
     const { product } = props
+    const { userRole } = useSelector (state => state)
     const history = useHistory()
+    const dispatch = useDispatch()
+
+    const deleteHandleOpen = () => {
+        dispatch(setDeleteDialog(true))
+        dispatch(setSelectedProduct(product))
+    }
+
+    const editProduct = () => {
+        dispatch(setSelectedProduct(product))
+        setTimeout(() => {
+            dispatch(setDialog(true))
+        }, 500);
+    }
 
     function productDetail(id){
         history.push(`/${id}`)
     }
 
-    const addToCart = () => {
-        axios({
-            url: 'http://localhost:3000/cart',
-            method: 'POST',
-            headers: {
-                access_token : localStorage.getItem('access_token')
-            },
-            data: {
-                product
-            }
-        })
-        .then( resp => {
-            console.log(`success`)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+    const addToCart = (id) => {
+        history.push('/' + id)
     }
 
     const buyProduct = (id) => {
@@ -47,12 +50,26 @@ export default function Product_Card (props) {
                         <p>Rp {product.price}</p>
                         <p>Stock: {product.stock}</p>
                     </div>
-                    <div>
-                        <IconButton onClick={() => {addToCart()}}>
-                            <AddShoppingCartIcon/>
-                        </IconButton>
-                        <Button onClick={() => { buyProduct(product.id)}}>Buy now</Button>
-                    </div>
+                    {
+                        userRole !== 'admin' &&
+                        <div>
+                            <IconButton onClick={() => {addToCart(product.id)}}>
+                                <AddShoppingCartIcon/>
+                            </IconButton>
+                            <Button onClick={() => { buyProduct(product.id)}}>Buy now</Button>
+                        </div>
+                    }
+                    {
+                        userRole === 'admin' &&
+                        <div style={{ display: 'flex', justifyContent: 'space-evenly'}}>
+                            <IconButton onClick={() => {editProduct()}}>
+                                <EditOutlinedIcon/>
+                            </IconButton>
+                            <IconButton onClick={() => {deleteHandleOpen()}}>
+                                <DeleteOutlineOutlinedIcon/>
+                            </IconButton>
+                        </div>
+                    }
                 </div>
 
             </div>

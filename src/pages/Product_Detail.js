@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams, useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCart } from '../store/actions/actions'
 import { Button, IconButton, RadioGroup, Radio, FormControlLabel, TextField, Divider } from '@material-ui/core'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
@@ -12,6 +13,7 @@ export default function Product_Detail(){
     const [ qty, setQty ] = useState(1)
     const { id } = useParams()
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const sizeHandler = (e) => {
         setSize(e.target.value)
@@ -20,20 +22,46 @@ export default function Product_Detail(){
     const qtyHandler = (e) => {
         setQty(e.target.value)
     }
+
+    const fetchCart = () => {
+        axios({
+            url: 'http://localhost:3000/cart',
+            method: 'GET',
+            headers: {
+                access_token : localStorage.getItem('access_token')
+            }
+        })
+        .then(({ data }) => {
+            dispatch(setCart(data))
+            history.push('/cart')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
     
     const addToCart = () => {
+        if(!localStorage.getItem('access_token')){
+            history.push('login')
+        }
+        const data = {
+            productName : product.productName,
+            price: product.price,
+            amount: qty,
+            ProductId: product.id,
+            image_url: product.image_url
+
+        }
         axios({
             url: 'http://localhost:3000/cart',
             method: 'POST',
             headers: {
                 access_token : localStorage.getItem('access_token')
             },
-            data: {
-                product
-            }
+            data
         })
         .then( resp => {
-            console.log(`success`)
+            fetchCart()
         })
         .catch(err => {
             console.log(err)

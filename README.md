@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+## O - Mart ##
+OMart merupakan singakatan dari online Market. Dimana pada web aplikasi ini, user diberikan pengalaman menjelajah di sebuah website yang berfokus pada fashion. Pada Omart ini, target penjualnya adalah brand-brand lokal yang berada di Indonesia ataupun usaha-usaha rumahan yang mulai bergerak pada bisnis online.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pada Website ini, terdapat dua hak akses, yaitu akses sebagai admin/penjual dan akses sebagai costumer.
 
-## Available Scripts
+pada akses sebagai admin, admin atau user di perbolehkan untuk menambahkan, mengupdate, ataupun menghapus product yang ada di website ini. Namun admin tidak ada akses untuk checkout ataupun melihat keranjang. Sedangkan untuk costumer, user bisa menambahkan ke keranjang ataupun mencheckout product yang mereka inginkan.
 
-In the project directory, you can run:
 
-### `npm start`
+Untuk akses admin silahkan login menggunakan akun berikut: 
+email: admin1@mail.com
+password: admin12020
+/home/efazri/Documents/omart-client/picture page/Screenshot from 2020-12-29 07-31-02.png
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Tampilan awal, user akan diberikan tampilan dashboard ( route '/' ). Dimana pada halaman ini, user bisa melihat semua produk yang ada di OMart. Selain itu, feature beli dan tambahkan ke keranjang sudah di tampilkan meskipun belum login. Namun ketika user mengklik beli atau tambahkan ke keranjang, apabila user belum login. Website secara otomatis akan mendirect user kehalaman login.
 
-### `npm test`
+pada halaman cart/keranjang ( route '/cart' ) user di berikan tampilan list produk yang sdah dimasukan ke keranjang, user bisa memilih item yang akan di checkout ataupun dihapus.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+pada halaman checkout (route '/checkout' ) user akan diberikan tampilan list yang akan di checkout, namun user perlu memilih metode pembayaran dan metode pengirimannya sebelum di checkout.
